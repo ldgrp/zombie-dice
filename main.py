@@ -23,7 +23,7 @@ def main():
 				dice = [(die, die.roll()) for die in dice]
 				[print("Rolled {} ({})".format(face, die)) for die, face in dice]
 				table.extend(dice)
-				
+
 
 				for name, face in [(die.name, face) for die, face in dice]:
 					if name == 'Hunk Dice' and (face == 'shotgun' or face == 'double_shotgun'):
@@ -42,27 +42,29 @@ def main():
 							brains -= 2
 					elif name == 'Santa Dice':
 						if face == 'energy_drink':
+							print("Energy drink WOOOOO!!!")
 							energy_drink = True
-						elif face == helmet:
+						elif face == 'helmet':
+							print("Nice helmet bruh...")
 							helmet = True
 
 				if energy_drink:
 					for i, (die, face) in zip(range(len(dice)+1),dice):
-						if die.name == 'Green Dice':
+						if die.name == 'Green Dice' and die.face == 'footprint':
 							dice[i]=(die,'brain')
-				
+
 				brains += len([face for die, face in dice if face == "brain"]) + 2*len([face for die, face in dice if face =="double_brain"])
 				shotguns += len([face for die, face in dice if face == "shotgun"]) + 2*len([face for die, face in dice if face =="double_shotgun"])
 
 				print("-"*10)
 				print(cup.dice)
-				# print(table)
 				print(len(cup.dice)+len(table))
 				print("-"*10)
-				
+
 				print("{0}'s brains: {1}\t{0}'s shotguns:{2}".format(player.name, brains, shotguns))
 
 				if shotguns >= 3+int(helmet):
+					print("You got cucked. No bueno brains for u fam")
 					break
 
 				print("-"*10)
@@ -87,7 +89,6 @@ def main():
 				print("{} won!!".format(player.name))
 				leaderboard(players)
 				game_won = True
-				break
 
 if __name__ == "__main__":
 	main()
